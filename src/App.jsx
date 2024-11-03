@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import PrivacyPolicyForm from './PrivacyPolicyForm';
 
 const App = () => {
@@ -71,14 +72,14 @@ const App = () => {
       By using this ${values.policyType === 'website' ? 'website' : 'app'}, 
       you signify your acceptance of this Privacy Policy. 
       If you do not agree to this Privacy Policy, please do not use this ${values.policyType === 'website' ? 'website' : 'app'}. 
-      Your continued use of this ${values.policyType === 'website' ? 'website' : 'app'} 
+      Your continued use of this ${ values.policyType === 'website' ? 'website' : 'app'} 
       following the posting of changes to this Privacy Policy will be deemed your acceptance of those changes.
     `;
     setPolicy(generatedPolicy);
   };
 
-  const copyToClipboard = (text ) => {
-    navigator.clipboard.writeText(text ).then(() => {
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text).then(() => {
       alert('Copied to clipboard!');
     }).catch(err => {
       console.error('Failed to copy: ', err);
@@ -121,7 +122,7 @@ const App = () => {
       <ul>
         <li>The categories of personal information we collected about you</li>
         <li>The categories of sources for the personal information we collected about you</li>
-        <li>Our business or commercial purpose for collecting or selling that personal information</ li>
+        <li>Our business or commercial purpose for collecting or selling that personal information</li>
         <li>The categories of third parties with whom we share that personal information</li>
         <li>The specific pieces of personal information we collected about you</li>
       </ul>
@@ -149,7 +150,7 @@ const App = () => {
       <p>We reserve the right to modify this Privacy Policy at any time. You acknowledge and agree that it is your responsibility to review this Privacy Policy periodically to familiarize yourself with any modifications.</p>
 
       <h2>Your Acceptance of These Terms:</h2>
-      <p>By using this ${formValues.policyType === 'website' ? 'website' : 'app'}, you signify your acceptance of this Privacy Policy. If you do not agree to this Privacy Policy, please do not use this ${formValues .policyType === 'website' ? 'website' : 'app'}. Your continued use of this ${formValues.policyType === 'website' ? 'website' : 'app'} following the posting of changes to this Privacy Policy will be deemed your acceptance of those changes.</p>
+      <p>By using this ${formValues.policyType === 'website' ? 'website' : 'app'}, you signify your acceptance of this Privacy Policy. If you do not agree to this Privacy Policy, please do not use this ${formValues.policyType === 'website' ? 'website' : 'app'}. Your continued use of this ${formValues.policyType === 'website' ? 'website' : 'app'} following the posting of changes to this Privacy Policy will be deemed your acceptance of those changes.</p>
     `;
     return html;
   };
@@ -160,7 +161,7 @@ const App = () => {
 
       At ${formValues.companyName}, accessible from ${formValues.websiteUrl}, one of our main priorities is the privacy of our visitors. This Privacy Policy document outlines the types of information that is collected and recorded by ${formValues.companyName} and how we use it.
 
-      ## Contact Us:
+ ## Contact Us:
 
       For any inquiries, please contact us at ${formValues.contactEmail}.
 
@@ -204,7 +205,7 @@ const App = () => {
 
       ## CalOPPA Compliance:
 
-      Purs uant to CalOPPA, we agree to the following:
+      Pursuant to CalOPPA, we agree to the following:
 
       * Users can visit our site anonymously
       * Once this privacy policy is created, we will add a link to it on our home page or as a minimum, on the first significant page after entering our website
@@ -233,6 +234,11 @@ const App = () => {
 
   return (
     <div className="container mx-auto p-4">
+      <Helmet>
+        <title>Privacy Policy Generator</title>
+        <meta name="description" content="Generate a privacy policy for your website or app" />
+        <meta name="keywords" content="privacy policy, generator, website, app" />
+      </Helmet>
       <h1 className="text-2xl font-bold">Privacy Policy Generator</h1>
       <PrivacyPolicyForm onGenerate={handleGenerate} />
       {policy && (
@@ -251,7 +257,7 @@ const App = () => {
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               onClick={() => copyToClipboard(generateHTML())}
-            >
+ >
               Copy HTML
             </button>
             <button
